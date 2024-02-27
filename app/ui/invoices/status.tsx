@@ -2,6 +2,16 @@ import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
 export default function InvoiceStatus({ status }: { status: string }) {
+  var render = null;
+  
+  if (status === 'pending'){
+    render = <>Pending <ClockIcon className="ml-1 w-4 text-gray-500" /></>;
+  }else if (status === 'paid'){
+    render = <>Paid <CheckIcon className="ml-1 w-4 text-white" /></>;
+  }else{
+    render = <p>Error: Wrong status</p>
+  }
+
   return (
     <span
       className={clsx(
@@ -12,7 +22,8 @@ export default function InvoiceStatus({ status }: { status: string }) {
         },
       )}
     >
-      {status === 'pending' ? (
+      {render}
+      {/* {status === 'pending' ? (
         <>
           Pending
           <ClockIcon className="ml-1 w-4 text-gray-500" />
@@ -23,7 +34,7 @@ export default function InvoiceStatus({ status }: { status: string }) {
           Paid
           <CheckIcon className="ml-1 w-4 text-white" />
         </>
-      ) : null}
+      ) : null} */}
     </span>
   );
 }
